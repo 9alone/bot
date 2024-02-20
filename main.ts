@@ -1,0 +1,52 @@
+function ค่าแสง () {
+    OLED12864_I2C.init(60)
+    OLED12864_I2C.showNumber(
+    0,
+    0,
+    CyBit.analogRead(CyBit.analogPort.A0),
+    1
+    )
+    OLED12864_I2C.showNumber(
+    0,
+    3,
+    CyBit.analogRead(CyBit.analogPort.A1),
+    1
+    )
+    OLED12864_I2C.showNumber(
+    5,
+    0,
+    CyBit.analogRead(CyBit.analogPort.A2),
+    1
+    )
+    OLED12864_I2C.showNumber(
+    5,
+    3,
+    CyBit.analogRead(CyBit.analogPort.A3),
+    1
+    )
+    OLED12864_I2C.draw()
+    CyBit.TimePAUSE(2000)
+}
+input.onButtonPressed(Button.B, function () {
+    ค่าแสง()
+})
+function start () {
+    CyBit.Set_Line_Color(lineColor.Black, [
+    CyBit.analogRead(CyBit.analogPort.A0),
+    CyBit.analogRead(CyBit.analogPort.A1),
+    CyBit.analogRead(CyBit.analogPort.A2),
+    CyBit.analogRead(CyBit.analogPort.A3)
+    ])
+    CyBit.Set_Min_Value([
+    0,
+    1,
+    0,
+    0
+    ])
+    CyBit.Set_Max_Value([
+    0,
+    1,
+    0,
+    0
+    ])
+}
